@@ -38,10 +38,10 @@ fclean: clean
 
 re: fclean all
 
-noflags:
+noflags: fclean
 	gcc -c $(C_FILES) $(LIB)
 	gcc -o $(NAME) $(OBJ) $(LIB)
 
-noobj: all clean
+noobj: re clean
 
 noflags_noobj: noflags clean
