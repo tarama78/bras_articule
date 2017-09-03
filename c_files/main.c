@@ -16,6 +16,7 @@
 #define STOP 0
 #define LEFT 1
 #define RIGHT 2
+#define VAL_AX 10000
 
 int main(int argc, char **argv)
 {
@@ -50,45 +51,85 @@ int main(int argc, char **argv)
 				}
 				break;
 			case SDL_JOYAXISMOTION: //max 32768 min -32767
-				if (event.jaxis.axis == 0 && event.jaxis.value < -6000 &&
+				if (event.jaxis.axis == 0 && event.jaxis.value < -VAL_AX &&
 						rotation != LEFT)
 				{
 					rotation = LEFT;
 					printf("rotation gauche %d\n", event.jaxis.value);
 				}
-				else if (event.jaxis.axis == 0 && event.jaxis.value > 6000 &&
+				else if (event.jaxis.axis == 0 && event.jaxis.value > VAL_AX &&
 						rotation != RIGHT)
 				{
 					rotation = RIGHT;
 					printf("rotation droite %d\n", event.jaxis.value);
 				}
-				else if (event.jaxis.axis == 0 && event.jaxis.value < 6000 &&
-				event.jaxis.value > -6000 && rotation != STOP)
+				else if (event.jaxis.axis == 0 && event.jaxis.value < VAL_AX &&
+						event.jaxis.value > -VAL_AX && rotation != STOP)
 				{
 					rotation = STOP;
 					printf("stop rotation %d\n", event.jaxis.value);
 				}
-				if (event.jaxis.axis == 3 && event.jaxis.value < -6000 &&
+				if (event.jaxis.axis == 1 && event.jaxis.value < -VAL_AX &&
+						art1 != LEFT)
+				{
+					art1 = LEFT;
+					printf("art1 gauche %d\n", event.jaxis.value);
+				}
+				else if (event.jaxis.axis == 1 && event.jaxis.value > VAL_AX &&
+						art1 != RIGHT)
+				{
+					art1 = RIGHT;
+					printf("art1 droite %d\n", event.jaxis.value);
+				}
+				else if (event.jaxis.axis == 1 && event.jaxis.value < VAL_AX &&
+						event.jaxis.value > -VAL_AX && art1 != STOP)
+				{
+					art1 = STOP;
+					printf("stop art1 %d\n", event.jaxis.value);
+				}
+				if (event.jaxis.axis == 4 && event.jaxis.value < -VAL_AX &&
+						art2 != LEFT)
+				{
+					art2 = LEFT;
+					printf("art2 gauche %d\n", event.jaxis.value);
+				}
+				else if (event.jaxis.axis == 4 && event.jaxis.value > VAL_AX &&
+						art2 != RIGHT)
+				{
+					art2 = RIGHT;
+					printf("art2 droite %d\n", event.jaxis.value);
+				}
+				else if (event.jaxis.axis == 4 && event.jaxis.value < VAL_AX &&
+						event.jaxis.value > -VAL_AX && art2 != STOP)
+				{
+					art2 = STOP;
+					printf("stop art2 %d\n", event.jaxis.value);
+				}
+				if (event.jaxis.axis == 3 && event.jaxis.value < -VAL_AX &&
 						pince != LEFT)
 				{
 					pince = LEFT;
 					printf("pince gauche %d\n", event.jaxis.value);
 				}
-				else if (event.jaxis.axis == 3 && event.jaxis.value > 6000 &&
+				else if (event.jaxis.axis == 3 && event.jaxis.value > VAL_AX &&
 						pince != RIGHT)
 				{
 					pince = RIGHT;
-					printf("rotation droite %d\n", event.jaxis.value);
+					printf("pince droite %d\n", event.jaxis.value);
 				}
-				else if (event.jaxis.axis == 3 && event.jaxis.value < 6000 &&
-				event.jaxis.value > -6000 && pince != STOP)
+				else if (event.jaxis.axis == 3 && event.jaxis.value < VAL_AX &&
+						event.jaxis.value > -VAL_AX && pince != STOP)
 				{
 					pince = STOP;
 					printf("stop pince %d\n", event.jaxis.value);
 				}
+				if (event.jaxis.axis == 2)
+					printf("%d\n", event.jaxis.value);
+				if (event.jaxis.axis == 5)
+					printf("%d\n", event.jaxis.value);
 				break;
 		}
-		SDL_Delay(10);
+		SDL_Delay(1);
 	}
 	SDL_JoystickClose(joystick);
 	SDL_FreeSurface(fen);
