@@ -33,6 +33,7 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	fen = SDL_SetVideoMode(500, 500, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 	joystick = SDL_JoystickOpen(0);
+	printf("nb joystick : %d\n",SDL_NumJoysticks());
 	SDL_JoystickEventState(SDL_ENABLE);
 
 	quit = 0;
