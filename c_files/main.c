@@ -128,6 +128,35 @@ int main(int argc, char **argv)
 				if (event.jaxis.axis == 5)
 					printf("%d\n", event.jaxis.value);
 				break;
+			case SDL_JOYHATMOTION:
+				if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_UP)
+					printf("hat : SDL_HAT_UP\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_DOWN)
+					printf("hat : SDL_HAT_DOWN\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_RIGHT)
+					printf("hat : SDL_HAT_RIGHT\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_LEFT)
+					printf("hat : SDL_HAT_LEFT\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_RIGHTDOWN)
+					printf("hat : SDL_HAT_RIGHTDOWN\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_RIGHTUP)
+					printf("hat : SDL_HAT_RIGHTUP\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_LEFTDOWN)
+					printf("hat : SDL_HAT_LEFTDOWN\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_LEFTUP)
+					printf("hat : SDL_HAT_LEFTUP\n");
+				else if(event.jhat.hat == 0 &&
+						event.jhat.value == SDL_HAT_CENTERED)
+					printf("hat : SDL_HAT_CENTERED\n");
+				break;
 		}
 		SDL_Delay(1);
 	}
