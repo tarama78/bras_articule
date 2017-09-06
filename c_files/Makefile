@@ -12,7 +12,8 @@
 
 NAME = bras_c
 
-C_FILES = main.c
+C_FILES = main.c \
+		  event.c
 
 OBJ = $(C_FILES:.c=.o)
 
