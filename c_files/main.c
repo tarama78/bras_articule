@@ -32,24 +32,19 @@ int main(int argc, char **argv)
 	printf("nb joystick : %d\n",SDL_NumJoysticks());
 	SDL_JoystickEventState(SDL_ENABLE);
 
-	if (argc > 1)
-	{
-		ino = fopen(argv[1], "w");
-	}
-	else
-	{
-		ino = fopen(DEF_INO_PORT, "w");
-	}
-
 	ft_init_bras(&bras);
 	ft_send_data(&bras, ino);
 	while (bras.quit == 0)
 	{
+		if (argc > 1)
+			ino = fopen(argv[1], "w");
+		else
+			ino = fopen(DEF_INO_PORT, "w");
 		ft_event(event, &bras);
 		ft_send_data(&bras, ino);
+		fclose(ino);
 	}
 
-	fclose(ino);
 	SDL_JoystickClose(joystick);
 	SDL_FreeSurface(fen);
 	SDL_Quit();
@@ -104,7 +99,7 @@ void	ft_send_data(t_bras *bras, FILE *ino)
 					data[i] += 3;
 			}
 		}
-			
+
 	}
 	if (bras->last_data[0] != data[0] || bras->last_data[1] != data[1] ||
 			bras->last_data[2] != data[2] || bras->last_data[3] != data[3])
