@@ -88,15 +88,15 @@ class Moteur {
 
 Moteur		mot[4] =
 {
-	(22, 23, 2),
-	(24, 25, 3),
-	(28, 29, 5),
-	(26, 27, 4)
+	{22, 23, 2},
+	{24, 25, 3},
+	{28, 29, 5},
+	{26, 27, 4}
 };
 int			i;
 int			j;
 String		msg_in;
-char		char_act
+char		char_act;
 
 void  setup()
 {
@@ -173,7 +173,7 @@ void loop()
 	delay(50);
 }
 
-int		msg_corect(String str)
+int		msg_correct(String str)
 {
 	int		i;
 

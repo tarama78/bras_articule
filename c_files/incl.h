@@ -13,7 +13,7 @@
 #ifndef INCL_H
 # define INCL_H
 
-#define DEF_INO_PORT /dev/ttyACM0
+#define DEF_INO_PORT "/dev/ttyACM0"
 #define VAL_AX 10000
 #define VAL_VIT_1 100
 #define VAL_VIT_2 15000
@@ -37,7 +37,7 @@ typedef struct	s_bras
 }				t_bras;
 
 void	ft_init_bras(t_bras *bras);
-void	ft_send_data(t_bras *bras);
+void	ft_send_data(t_bras *bras, FILE *ino);
 void	ft_event(SDL_Event event, t_bras *bras);
 
 #endif

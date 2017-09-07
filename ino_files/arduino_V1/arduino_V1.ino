@@ -111,7 +111,7 @@ void loop()
 	{
 		i = 0;
 		msg_in = "";
-		while (i < 5)
+		while (i < 4)
 		{
 			msg_in += (char)Serial.read();
 			i++;
