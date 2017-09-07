@@ -33,7 +33,12 @@ int main(int argc, char **argv)
 	SDL_JoystickEventState(SDL_ENABLE);
 
 	ft_init_bras(&bras);
+	if (argc > 1)
+		ino = fopen(argv[1], "w");
+	else
+		ino = fopen(DEF_INO_PORT, "w");
 	ft_send_data(&bras, ino);
+	fclose(ino);
 	while (bras.quit == 0)
 	{
 		if (argc > 1)
