@@ -13,9 +13,13 @@
 #ifndef INCL_H
 # define INCL_H
 
+#define DEF_INO_PORT /dev/ttyACM0
 #define VAL_AX 10000
+#define VAL_VIT_1 100
+#define VAL_VIT_2 15000
+#define VAL_VIT_3 32000
 #define SIZE_DATA 30
-#define REFRESH_TIME 400
+#define REFRESH_TIME 50
 #define SUCCESS 0
 #define ERROR 1
 
@@ -26,13 +30,14 @@ typedef enum	e_mot
 
 typedef struct	s_bras
 {
-	t_mot		rot;
-	t_mot		art1;
-	t_mot		art2;
-	t_mot		pince;
+	t_mot		mot[4];
+	int			last_data[4];
 	int			speed;
+	int			quit;
 }				t_bras;
 
-void	event(SDL_Event event, char *data, int *speed)
+void	ft_init_bras(t_bras *bras);
+void	ft_send_data(t_bras *bras);
+void	ft_event(SDL_Event event, t_bras *bras);
 
 #endif

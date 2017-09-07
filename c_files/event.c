@@ -15,126 +15,147 @@
 #include <time.h>
 #include "incl.h"
 
-void	event(SDL_Event event, char *data, int *speed)
+void	ft_event(SDL_Event event, t_bras *bras)
 {
 	int		quit;
-	int		time_start;
-	int		diff_time;
+	clock_t	time_start;
 
 	quit = 0;
-	time_start = clock() / CLOCKS_PER_SEC * 1000;
-	*speed = -1;
-	while (quit == 0)
+	time_start = clock();
+	while (quit == 0 || ((clock() - time_start) / 10) <
+			(REFRESH_TIME + 10))
 	{
 		SDL_WaitEvent(&event);
 		switch(event.type)
 		{
 			case SDL_JOYBUTTONDOWN:
-				printf("bouton : %d\n", event.jbutton.button);
+				//printf("bouton : %d\n", event.jbutton.button);
 				switch (event.jbutton.button)
 				{
 					case 6 :
 						quit = 1;
+						bras->quit = 1;
 						break;
 				}
 				break;
 			case SDL_JOYAXISMOTION: //max 32768 min -32767
 				if (event.jaxis.axis == 0 && event.jaxis.value < -VAL_AX &&
-						rotation != LEFT)
+						bras->mot[0] != LEFT)
 				{
 					quit = 1;
-					rotation = LEFT;
-					printf("rotation gauche %d\n", event.jaxis.value);
+					bras->mot[0] = LEFT;
+					//printf("rotation gauche %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 0 && event.jaxis.value > VAL_AX &&
-						rotation != RIGHT)
+						bras->mot[0] != RIGHT)
 				{
 					quit = 1;
-					rotation = RIGHT;
-					printf("rotation droite %d\n", event.jaxis.value);
+					bras->mot[0] = RIGHT;
+					//printf("rotation droite %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 0 && event.jaxis.value < VAL_AX &&
-						event.jaxis.value > -VAL_AX && rotation != STOP)
+						event.jaxis.value > -VAL_AX && bras->mot[0] != STOP)
 				{
 					quit = 1;
-					rotation = STOP;
-					printf("stop rotation %d\n", event.jaxis.value);
+					bras->mot[0] = STOP;
+					//printf("stop rotation %d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 1 && event.jaxis.value < -VAL_AX &&
-						art1 != LEFT)
+						bras->mot[1] != LEFT)
 				{
 					quit = 1;
-					art1 = LEFT;
-					printf("art1 gauche %d\n", event.jaxis.value);
+					bras->mot[1] = LEFT;
+					//printf("bras->mot[1] gauche %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 1 && event.jaxis.value > VAL_AX &&
-						art1 != RIGHT)
+						bras->mot[1] != RIGHT)
 				{
 					quit = 1;
-					art1 = RIGHT;
-					printf("art1 droite %d\n", event.jaxis.value);
+					bras->mot[1] = RIGHT;
+					//printf("bras->mot[1] droite %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 1 && event.jaxis.value < VAL_AX &&
-						event.jaxis.value > -VAL_AX && art1 != STOP)
+						event.jaxis.value > -VAL_AX && bras->mot[1] != STOP)
 				{
 					quit = 1;
-					art1 = STOP;
-					printf("stop art1 %d\n", event.jaxis.value);
+					bras->mot[1] = STOP;
+					//printf("stop bras->mot[1] %d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 4 && event.jaxis.value < -VAL_AX &&
-						art2 != LEFT)
+						bras->mot[2] != LEFT)
 				{
 					quit = 1;
-					art2 = LEFT;
-					printf("art2 gauche %d\n", event.jaxis.value);
+					bras->mot[2] = LEFT;
+					//printf("bras->mot[2] gauche %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 4 && event.jaxis.value > VAL_AX &&
-						art2 != RIGHT)
+						bras->mot[2] != RIGHT)
 				{
 					quit = 1;
-					art2 = RIGHT;
-					printf("art2 droite %d\n", event.jaxis.value);
+					bras->mot[2] = RIGHT;
+					//printf("bras->mot[2] droite %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 4 && event.jaxis.value < VAL_AX &&
-						event.jaxis.value > -VAL_AX && art2 != STOP)
+						event.jaxis.value > -VAL_AX && bras->mot[2] != STOP)
 				{
 					quit = 1;
-					art2 = STOP;
-					printf("stop art2 %d\n", event.jaxis.value);
+					bras->mot[2] = STOP;
+					//printf("stop bras->mot[2] %d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 3 && event.jaxis.value < -VAL_AX &&
-						pince != LEFT)
+						bras->mot[3] != LEFT)
 				{
 					quit = 1;
-					pince = LEFT;
-					printf("pince gauche %d\n", event.jaxis.value);
+					bras->mot[3] = LEFT;
+					//printf("bras->mot[3] gauche %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 3 && event.jaxis.value > VAL_AX &&
-						pince != RIGHT)
+						bras->mot[3] != RIGHT)
 				{
 					quit = 1;
-					pince = RIGHT;
-					printf("pince droite %d\n", event.jaxis.value);
+					bras->mot[3] = RIGHT;
+					//printf("bras->mot[3] droite %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 3 && event.jaxis.value < VAL_AX &&
-						event.jaxis.value > -VAL_AX && pince != STOP)
+						event.jaxis.value > -VAL_AX && bras->mot[3] != STOP)
 				{
 					quit = 1;
-					pince = STOP;
-					printf("stop pince %d\n", event.jaxis.value);
+					bras->mot[3] = STOP;
+					//printf("stop bras->mot[3] %d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 2)
 				{
-					quit = 1;
-					printf("%d\n", event.jaxis.value);
+					//quit = 1;
+					//printf("%d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 5)
 				{
-					quit = 1;
-					printf("%d\n", event.jaxis.value);
+					//printf("%d\n", event.jaxis.value);
+					if (event.jaxis.value <= VAL_VIT_1 && bras->speed != 0)
+					{
+						quit = 1;
+						bras->speed = 0;
+					}
+					else if (event.jaxis.value >= VAL_VIT_1 &&
+							event.jaxis.value <= VAL_VIT_2 && bras->speed != 1)
+					{
+						quit = 1;
+						bras->speed = 1;
+					}
+					else if (event.jaxis.value >= VAL_VIT_2 &&
+							event.jaxis.value <= VAL_VIT_3 && bras->speed != 2)
+					{
+						quit = 1;
+						bras->speed = 2;
+					}
+					else if (event.jaxis.value >= VAL_VIT_3 && bras->speed != 3)
+					{
+						quit = 1;
+						bras->speed = 3;
+					}
 				}
 				break;
-			case SDL_JOYHATMOTION:
+			/*case SDL_JOYHATMOTION:
 				if(event.jhat.hat == 0 &&
 						event.jhat.value == SDL_HAT_UP)
 				{
@@ -187,7 +208,7 @@ void	event(SDL_Event event, char *data, int *speed)
 					quit = 1;
 					printf("hat : SDL_HAT_CENTERED\n");
 				}
-				break;
+				break;*/
 		}
 		SDL_Delay(1);
 	}
