@@ -126,6 +126,7 @@ void loop()
 			msg_in += (char)Serial.read();
 			i++;
 		}
+                Serial.println(msg_in);
 		if (msg_correct(msg_in))
 		{	
 			j = -1;
@@ -166,10 +167,7 @@ void loop()
 				}
 			}
 		}
-		Serial.print(SUCCESS);
 	}
-	else
-		Serial.print(ERROR);
 	delay(50);
 }
 
