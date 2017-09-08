@@ -38,6 +38,7 @@ void	ft_event(SDL_Event event, t_bras *bras)
 						i = -1;
 						while (++i < 4)
 							bras->mot[i] = STOP;
+						bras->all_off = 1;
 						break;
 					case 6 : // <back> aret du programme
 						quit = 1;

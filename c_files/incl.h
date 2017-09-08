@@ -32,6 +32,7 @@ typedef struct	s_bras
 {
 	t_mot		mot[4];
 	int			last_data[4];
+	int			all_off;
 	int			speed;
 	int			quit;
 }				t_bras;
