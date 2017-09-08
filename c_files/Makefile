@@ -25,8 +25,6 @@ MATH = -lm
 
 LIB = $(SDL)
 
-MSG = commit
-
 all: $(NAME)
 
 $(NAME):
@@ -53,9 +51,8 @@ gadd:
 	git add -A
 
 gcommit: gadd
-	@echo "commit message : "
-	@read MSG
-	git commit -m "$MSG"
+	@echo $1
+	git commit -m "commit"
 
 gpush: gcommit
 	git push
