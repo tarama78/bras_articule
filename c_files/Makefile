@@ -15,7 +15,7 @@ NAME = bras_c
 C_FILES = main.c \
 		  event.c
 
-OBJ = $(C_FILES:.c=.o)
+O_FILES = $(C_FILES:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -29,10 +29,10 @@ all: $(NAME)
 
 $(NAME):
 	gcc -c $(C_FILES) $(FLAGS) $(LIB)
-	gcc -o $(NAME) $(OBJ) $(FLAGS) $(LIB)
+	gcc -o $(NAME) $(O_FILES) $(FLAGS) $(LIB)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(O_FILES)
 
 clean_swp:
 	find . -name "*~" -o -name "#*#" -o -name ".*.swp" -delete -print
@@ -44,7 +44,7 @@ re: fclean all
 
 noflags: fclean
 	gcc -c $(C_FILES) $(LIB)
-	gcc -o $(NAME) $(OBJ) $(LIB)
+	gcc -o $(NAME) $(O_FILES) $(LIB)
 
 noobj: re clean
 
@@ -54,8 +54,7 @@ open:
 	vim +12 ../ino_files/*/*.ino ../py_files/*.py Makefile *.c *.h
 
 exec:
-	make re
-	make clean
+	make noobj
 	./$(NAME)
 
 gadd: clean clean_swp

@@ -12,6 +12,10 @@
 
 from tkinter import *
 
+# other files
+# fenetre.py
+# tk_test.py
+
 class Bouton():
     def __init__(self, fen, ino, color='white', width=600, height=500):
         self.fen = fen

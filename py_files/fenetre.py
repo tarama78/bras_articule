@@ -13,6 +13,10 @@
 from bouton import *
 import time
 
+# other files
+# bouton.py
+# tk_test.py
+
 class Fenetre():
     def __init__(self, fen, b1):
         self.fen = fen
