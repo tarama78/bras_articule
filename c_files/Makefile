@@ -34,7 +34,10 @@ $(NAME):
 clean:
 	rm -f $(OBJ)
 
-fclean: clean
+clean_swp:
+	find . -name "*~" -o -name "#*#" -o -name ".*.swp" -delete -print
+
+fclean: clean clean_swp
 	rm -f $(NAME)
 
 re: fclean all
@@ -52,9 +55,10 @@ open:
 
 exec:
 	make re
+	make clean
 	./$(NAME)
 
-gadd:
+gadd: clean clean_swp
 	git add -A
 
 gcommit: gadd

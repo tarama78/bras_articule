@@ -49,7 +49,13 @@ int main(int argc, char **argv)
 		ft_send_data(&bras, ino);
 		fclose(ino);
 	}
-
+	SDL_Delay(50);
+	if (argc > 1)
+		ino = fopen(argv[1], "w");
+	else
+		ino = fopen(DEF_INO_PORT, "w");
+	ft_send_data(&bras, ino);
+	fclose(ino);
 	SDL_JoystickClose(joystick);
 	SDL_FreeSurface(fen);
 	SDL_Quit();
@@ -105,7 +111,7 @@ void	ft_send_data(t_bras *bras, FILE *ino)
 
 	}
 	if ((bras->last_data[0] != data[0] || bras->last_data[1] != data[1] ||
-			bras->last_data[2] != data[2] || bras->last_data[3] != data[3]) ||
+				bras->last_data[2] != data[2] || bras->last_data[3] != data[3]) ||
 			(data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0))
 	{
 		fprintf(ino, "%d%d%d%d", data[0], data[1], data[2], data[3]);
