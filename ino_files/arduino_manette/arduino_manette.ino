@@ -122,7 +122,7 @@ void loop()
                 delay(10);
 		i = 0;
 		msg_in = "";
-		while (Serial.available > 0)
+		while (Serial.available() > 0)
 		{
 			msg_in += (char)Serial.read();
 			i++;
