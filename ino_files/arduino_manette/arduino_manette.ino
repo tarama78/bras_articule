@@ -117,19 +117,20 @@ void  setup()
 
 void loop()
 {
-	if (Serial.available())
+	if (Serial.available() > 0)
 	{
                 delay(10);
 		i = 0;
 		msg_in = "";
-		while (i < 4)
+		while (Serial.available > 0)
 		{
 			msg_in += (char)Serial.read();
 			i++;
 		}
-                Serial.println(msg_in);
+		msg_in += '\0';
+        Serial.println(msg_in);
 		if (msg_correct(msg_in))
-		{	
+		{
 			j = -1;
 			while (++j < 4)
 			{
