@@ -52,6 +52,7 @@ open:
 
 exec:
 	make re
+	make clean
 	./$(NAME)
 
 gadd:
