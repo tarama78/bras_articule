@@ -104,8 +104,9 @@ void	ft_send_data(t_bras *bras, FILE *ino)
 		}
 
 	}
-	if (bras->last_data[0] != data[0] || bras->last_data[1] != data[1] ||
-			bras->last_data[2] != data[2] || bras->last_data[3] != data[3])
+	if ((bras->last_data[0] != data[0] || bras->last_data[1] != data[1] ||
+			bras->last_data[2] != data[2] || bras->last_data[3] != data[3]) ||
+			(data[0] == 0 && data[1] == 0 && data[2] == 0 && data[3] == 0))
 	{
 		fprintf(ino, "%d%d%d%d", data[0], data[1], data[2], data[3]);
 		printf("send : %d%d%d%d\n", data[0], data[1], data[2], data[3]);

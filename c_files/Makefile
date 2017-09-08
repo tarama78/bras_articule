@@ -50,6 +50,10 @@ noflags_noobj: noflags clean
 open:
 	vim +12 ../ino_files/*/*.ino ../py_files/*.py Makefile *.c *.h
 
+exec:
+	make re
+	./$(NAME)
+
 gadd:
 	git add -A
 
