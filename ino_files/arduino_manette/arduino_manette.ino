@@ -119,6 +119,7 @@ void loop()
 {
 	if (Serial.available())
 	{
+                delay(10);
 		i = 0;
 		msg_in = "";
 		while (i < 4)
@@ -168,7 +169,7 @@ void loop()
 			}
 		}
 	}
-	delay(50);
+	delay(10);
 }
 
 int		msg_correct(String str)
