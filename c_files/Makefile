@@ -51,7 +51,6 @@ gadd:
 	git add -A
 
 gcommit: gadd
-	@echo $1
 	git commit -m "commit"
 
 gpush: gcommit
