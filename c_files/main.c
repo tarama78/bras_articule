@@ -79,9 +79,7 @@ void	ft_send_data(t_bras *bras, FILE *ino)
 	{
 		i = -1;
 		while (++i < 4)
-		{
 			data[i] = 0;
-		}
 	}
 	else
 	{
@@ -110,10 +108,9 @@ void	ft_send_data(t_bras *bras, FILE *ino)
 			bras->last_data[2] != data[2] || bras->last_data[3] != data[3])
 	{
 		fprintf(ino, "%d%d%d%d", data[0], data[1], data[2], data[3]);
+		printf("send : %d%d%d%d\n", data[0], data[1], data[2], data[3]);
 		i = -1;
 		while (++i < 4)
-		{
 			bras->last_data[i] = data[i];
-		}
 	}
 }

@@ -46,3 +46,14 @@ noflags: fclean
 noobj: re clean
 
 noflags_noobj: noflags clean
+
+gadd:
+	git add -A
+
+gcommit: gadd
+	echo "commit message : "
+	read msg
+	git commit -m "$msg"
+
+gpush: gcommit
+	git push

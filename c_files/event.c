@@ -19,6 +19,7 @@ void	ft_event(SDL_Event event, t_bras *bras)
 {
 	int		quit;
 	clock_t	time_start;
+	int		i;
 
 	quit = 0;
 	time_start = clock();
@@ -32,7 +33,12 @@ void	ft_event(SDL_Event event, t_bras *bras)
 				//printf("bouton : %d\n", event.jbutton.button);
 				switch (event.jbutton.button)
 				{
-					case 6 :
+					case 0 : // <a> aret de tt les moteur
+						quit = 1;
+						i = -1;
+						while (++i < 4)
+							bras->mot[i] = STOP;
+					case 6 : // <back> aret du programme
 						quit = 1;
 						bras->quit = 1;
 						break;
@@ -61,17 +67,17 @@ void	ft_event(SDL_Event event, t_bras *bras)
 					//printf("stop rotation %d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 1 && event.jaxis.value < -VAL_AX &&
-						bras->mot[1] != LEFT)
-				{
-					quit = 1;
-					bras->mot[1] = LEFT;
-					//printf("bras->mot[1] gauche %d\n", event.jaxis.value);
-				}
-				else if (event.jaxis.axis == 1 && event.jaxis.value > VAL_AX &&
 						bras->mot[1] != RIGHT)
 				{
 					quit = 1;
 					bras->mot[1] = RIGHT;
+					//printf("bras->mot[1] gauche %d\n", event.jaxis.value);
+				}
+				else if (event.jaxis.axis == 1 && event.jaxis.value > VAL_AX &&
+						bras->mot[1] != LEFT)
+				{
+					quit = 1;
+					bras->mot[1] = LEFT;
 					//printf("bras->mot[1] droite %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 1 && event.jaxis.value < VAL_AX &&
@@ -82,17 +88,17 @@ void	ft_event(SDL_Event event, t_bras *bras)
 					//printf("stop bras->mot[1] %d\n", event.jaxis.value);
 				}
 				if (event.jaxis.axis == 4 && event.jaxis.value < -VAL_AX &&
-						bras->mot[2] != LEFT)
-				{
-					quit = 1;
-					bras->mot[2] = LEFT;
-					//printf("bras->mot[2] gauche %d\n", event.jaxis.value);
-				}
-				else if (event.jaxis.axis == 4 && event.jaxis.value > VAL_AX &&
 						bras->mot[2] != RIGHT)
 				{
 					quit = 1;
 					bras->mot[2] = RIGHT;
+					//printf("bras->mot[2] gauche %d\n", event.jaxis.value);
+				}
+				else if (event.jaxis.axis == 4 && event.jaxis.value > VAL_AX &&
+						bras->mot[2] != LEFT)
+				{
+					quit = 1;
+					bras->mot[2] = LEFT;
 					//printf("bras->mot[2] droite %d\n", event.jaxis.value);
 				}
 				else if (event.jaxis.axis == 4 && event.jaxis.value < VAL_AX &&
@@ -123,11 +129,11 @@ void	ft_event(SDL_Event event, t_bras *bras)
 					bras->mot[3] = STOP;
 					//printf("stop bras->mot[3] %d\n", event.jaxis.value);
 				}
-				if (event.jaxis.axis == 2)
+				/*if (event.jaxis.axis == 2)
 				{
 					//quit = 1;
 					//printf("%d\n", event.jaxis.value);
-				}
+				}*/
 				if (event.jaxis.axis == 5)
 				{
 					//printf("%d\n", event.jaxis.value);
