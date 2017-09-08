@@ -176,10 +176,19 @@ void loop()
 int		msg_correct(String str)
 {
 	int		i;
+	int		size_str;
 
+	size_str = str.length();
+	if (size_str == 8)
+	{
+		str[0] = str[4];
+		str[1] = str[5];
+		str[2] = str[6];
+		str[3] = str[7];
+	}
 	i = -1;
 	while (++i < 4)
-	{	
+	{
 		if (!(str.charAt(i) >= '0' && str.charAt(i) <= '6'))
 			return (0); //error
 	}
