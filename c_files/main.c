@@ -22,13 +22,17 @@ int main(int argc, char **argv)
 	SDL_Joystick	*joystick;
 	t_bras			bras;
 	FILE			*ino;
+	int				joynumber;
 
 	(void)argc;
 	(void)argv;
+	joynumber = 1;
+	if (argc == 2)
+		joynumber = atoi(argv[1]);
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 		return (EXIT_FAILURE);
 	fen = SDL_SetVideoMode(500, 500, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-	joystick = SDL_JoystickOpen(0);
+	joystick = SDL_JoystickOpen(joynumber);
 	printf("nb joystick : %d\n",SDL_NumJoysticks());
 	SDL_JoystickEventState(SDL_ENABLE);
 

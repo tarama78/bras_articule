@@ -15,8 +15,8 @@
 
 #define DEF_INO_PORT "/dev/ttyACM0"
 #define VAL_AX 10000
-#define VAL_VIT_1 100
-#define VAL_VIT_2 15000
+#define VAL_VIT_1 10
+#define VAL_VIT_2 100
 #define VAL_VIT_3 32000
 #define SIZE_DATA 30
 #define REFRESH_TIME 50
