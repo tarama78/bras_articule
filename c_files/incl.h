@@ -37,8 +37,10 @@ typedef struct	s_bras
 	int			quit;
 }				t_bras;
 
+// main.c
 void	ft_init_bras(t_bras *bras);
 void	ft_send_data(t_bras *bras, FILE *ino);
+// event.c
 void	ft_event(SDL_Event event, t_bras *bras);
 
 #endif

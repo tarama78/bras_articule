@@ -19,6 +19,10 @@ from tkinter import *
 from bouton import *
 from fenetre import *
 
+# other files
+# fenetre.py
+# bouton.py
+
 fen1 = Tk()
 
 i = 0
