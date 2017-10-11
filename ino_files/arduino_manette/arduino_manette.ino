@@ -113,6 +113,7 @@ void  setup()
 	mot[2].setSpeed(255);
 	mot[3].run(BRAKE);
 	mot[3].setSpeed(255);
+        Serial.println("start");
 }
 
 void loop()

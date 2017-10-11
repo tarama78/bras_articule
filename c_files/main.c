@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	fen = SDL_SetVideoMode(500, 500, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 	joystick = SDL_JoystickOpen(joynumber);
-	printf("nb joystick : %d\n",SDL_NumJoysticks());
+	printf("arduino : "DEF_INO_PORT"\nnb joystick : %d\n", SDL_NumJoysticks());
 	SDL_JoystickEventState(SDL_ENABLE);
 
 	ft_init_bras(&bras);
